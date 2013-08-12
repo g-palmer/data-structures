@@ -6,40 +6,49 @@ var BinarySearchTree = function(){
 
 };
 
-BinarySearchTree.prototype.insert = function(value) {
+BinarySearchTree.prototype.insert = function(value, options) {
 
-  var newNode = this.makeNode(value);
+  var batchInsert = options && options.batch;
+  var newNode, minAndMax;
 
-  if (this._root) {
-
-    newNode.depth++;
-
-    (function insert(node) {
-      newNode.depth++;
-      if (value < node.value) {
-        if (node.left) {
-          insert(node.left);
-        } else {
-          node.left = newNode;
-        }
-      } else if (value > node.value) {
-        if (node.right) {
-          insert(node.right);
-        } else {
-          node.right = newNode;
-        }
-      } else {
-        alert('value already in tree');
-      }
-
-    }(this._root));
-
-  } else {
-    newNode.depth++;
-    this._root = newNode;
+  if (!batchInsert) {
+    value = [value];
   }
 
-  return newNode;
+  value.forEach(function(val) {
+    newNode = this.makeNode(val);
+
+    if (this._root) {
+
+      newNode.depth++;
+
+      (function insert(node) {
+        newNode.depth++;
+        if (val < node.value) {
+          if (node.left) {
+            insert(node.left);
+          } else {
+            node.left = newNode;
+          }
+        } else if (val > node.value) {
+          if (node.right) {
+            insert(node.right);
+          } else {
+            node.right = newNode;
+          }
+        }
+      }(this._root));
+
+    } else {
+      newNode.depth++;
+      this._root = newNode;
+    }
+  }, this);
+
+  minAndMax = this.getMinAndMaxDepth();
+  if (minAndMax[1] > (2 * minAndMax[0])) {
+    this.rebalance();
+  }
 
 };
 

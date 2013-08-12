@@ -32,6 +32,18 @@ describe("binarySearchTree", function() {
       expect(binarySearchTree.getRoot().right.value).toEqual(15);
     });
 
+    it('shoud allow for batch inserts of values', function() {
+      binarySearchTree.insert([10, 6, 5, 8, 4, 3, 2, 1, 0, 12, 15, 20], {batch: true});
+      expect(binarySearchTree.depthFirstLog().length).toEqual(12);
+    });
+
+    it('should keep a balanced tree when inserting one at a time', function() {
+      fillTree([10, 6, 5, 8, 4, 3, 2, 1, 0, 12, 15, 20]);
+      var minAndMax = binarySearchTree.getMinAndMaxDepth();
+      expect(minAndMax[1] - minAndMax[0]).toBeLessThan(2);
+    });
+
+
   });
 
   describe('contains', function() {
@@ -71,15 +83,15 @@ describe("binarySearchTree", function() {
     });
   });
 
-  describe('getMaxAndMinDepth', function() {
+  describe('getMinAndMaxDepth', function() {
     it('should return an array of the min and max depths of the tree', function() {
       fillTree([10, 9, 8, 7, 6, 15, 20]);
-      expect(binarySearchTree.getMaxAndMinDepth()).toEqual([3, 5]);
+      expect(binarySearchTree.getMinAndMaxDepth()).toEqual([3, 5]);
     });
 
     it('should return an array of the min and max depths of the tree again', function() {
       fillTree([10, 6, 5, 8, 4, 3, 2, 1, 0, 12, 15, 20]);
-      expect(binarySearchTree.getMaxAndMinDepth()).toEqual([3, 8]);
+      expect(binarySearchTree.getMinAndMaxDepth()).toEqual([3, 8]);
     });
   });
 
@@ -87,8 +99,8 @@ describe("binarySearchTree", function() {
     it ('should rebalance a tree so max and min depths are within 1', function() {
       fillTree([10, 6, 5, 8, 4, 3, 2, 1, 0, 12, 15, 20]);
       binarySearchTree.rebalance();
-      var maxAndMin = binarySearchTree.getMaxAndMinDepth();
-      expect(maxAndMin[1] - maxAndMin[0]).toBeLessThan(2);
+      var minAndMax = binarySearchTree.getMinAndMaxDepth();
+      expect(minAndMax[1] - minAndMax[0]).toBeLessThan(2);
     });
   });
 
