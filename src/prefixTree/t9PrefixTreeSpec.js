@@ -5,7 +5,7 @@ describe("T9PrefixTree", function() {
     t9PrefixTree = new T9PrefixTree();
   });
 
-  it("should have methods named 'insert', 'contains', 'search", function() {
+  it("should have methods named 'insert', 'contains', 'search', 't9Search'", function() {
     expect(t9PrefixTree.insert).toEqual(jasmine.any(Function));
     expect(t9PrefixTree.contains).toEqual(jasmine.any(Function));
     expect(t9PrefixTree.search).toEqual(jasmine.any(Function));
