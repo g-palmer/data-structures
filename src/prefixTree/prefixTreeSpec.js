@@ -16,6 +16,11 @@ describe("PrefixTree", function() {
       expect(prefixTree.children[0].letter).toEqual('b');
     });
 
+    it('should correctly identify the end of a full word', function() {
+      prefixTree.insert('be');
+      expect(prefixTree.children[0].children[0].fullWord).toBe(true);
+    });
+
   });
 
 });

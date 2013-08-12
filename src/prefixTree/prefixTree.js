@@ -7,10 +7,10 @@ var PrefixTree = function(letter) {
 };
 
 PrefixTree.prototype.insert = function(word) {
+
   var character = word[0];
   var charInChildren;
   var childNode;
-
 
   if (word) {
 
@@ -29,6 +29,6 @@ PrefixTree.prototype.insert = function(word) {
   }
 
   if (word.length > 1) { childNode.insert(word.slice(1)); }
-  else { this.fullWord = true; }
+  else { childNode.fullWord = true; }
 
 };
