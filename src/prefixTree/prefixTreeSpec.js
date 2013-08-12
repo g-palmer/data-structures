@@ -52,11 +52,17 @@ describe("PrefixTree", function() {
       prefixTree.insert('boy');
       prefixTree.insert('box');
       prefixTree.insert('basketball');
-      var possibilites = prefixTree.search('b');
-      expect(possibilites).toContain('ball');
-      expect(possibilites).toContain('boy');
-      expect(possibilites).toContain('box');
-      expect(possibilites).toContain('basketball');
+      var bPossibilites = prefixTree.search('b');
+      expect(bPossibilites).toContain('ball');
+      expect(bPossibilites).toContain('boy');
+      expect(bPossibilites).toContain('box');
+      expect(bPossibilites).toContain('basketball');
+      var baPossibilities = prefixTree.search('ba');
+      expect(baPossibilities).toContain('ball');
+      expect(baPossibilities).toContain('basketball');
+      var boPossibilities = prefixTree.search('bo');
+      expect(boPossibilities).toContain('boy');
+      expect(boPossibilities).toContain('box');
     });
 
   });

@@ -38,6 +38,33 @@ PrefixTree.prototype.contains = function(word) {
 
 };
 
-PrefixTree.prototype.search = function(prefix) {
+PrefixTree.prototype.search = function(prefix, word, results) {
+
+  word = word || prefix;
+
+  if (prefix) {
+
+    var character = prefix[0];
+    var childNodeInChildren = this.children[character];
+
+    if (childNodeInChildren) {
+      return childNodeInChildren.search(prefix.slice(1), word);
+    }
+
+  } else {
+
+    results = results || [];
+
+    if (this.fullWord) { results.push(word); }
+
+    for (var letter in this.children) {
+      var pre = word + letter;
+      results.concat(this.children[letter].search('', pre, results));
+    }
+
+    return results;
+
+  }
+
 
 };
