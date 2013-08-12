@@ -41,6 +41,18 @@ describe("T9PrefixTree", function() {
       var t9Search3777 = t9PrefixTree.t9Search(3777);
       expect(t9Search3777).toContain('drum');
     });
+
+    it('should all for pauses for sequences of characters with the same t9 number', function() {
+      t9PrefixTree.insert('ball');
+      t9PrefixTree.insert('bat');
+      t9PrefixTree.insert('back');
+      var search1 = t9PrefixTree.t9Search('22-2');
+      expect(search1).toContain('ball');
+      expect(search1).toContain('bat');
+      expect(search1).toContain('back');
+      var search2 = t9PrefixTree.t9Search('22-2-222');
+      expect(search2).toContain('back');
+    });
   });
 
 });
