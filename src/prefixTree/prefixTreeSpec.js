@@ -5,9 +5,10 @@ describe("PrefixTree", function() {
     prefixTree = new PrefixTree();
   });
 
-  it("should have methods named 'insert', 'contains'", function() {
+  it("should have methods named 'insert', 'contains', 'search", function() {
     expect(prefixTree.insert).toEqual(jasmine.any(Function));
     expect(prefixTree.contains).toEqual(jasmine.any(Function));
+    expect(prefixTree.search).toEqual(jasmine.any(Function));
   });
 
   describe('insert', function() {
@@ -40,6 +41,22 @@ describe("PrefixTree", function() {
       prefixTree.insert('ball');
       expect(prefixTree.contains('ball')).toBe(true);
       expect(prefixTree.contains('boy')).toBe(false);
+    });
+
+  });
+
+  describe('search', function() {
+
+    it('should return all possibilites of a given prefix', function() {
+      prefixTree.insert('ball');
+      prefixTree.insert('boy');
+      prefixTree.insert('box');
+      prefixTree.insert('basketball');
+      var possibilites = prefixTree.search('b');
+      expect(possibilites).toContain('ball');
+      expect(possibilites).toContain('boy');
+      expect(possibilites).toContain('box');
+      expect(possibilites).toContain('basketball');
     });
 
   });

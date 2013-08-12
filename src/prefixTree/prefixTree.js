@@ -22,6 +22,7 @@ PrefixTree.prototype.insert = function(word) {
 };
 
 PrefixTree.prototype.contains = function(word) {
+
   var character = word[0];
   var childNodeInChildren = this.children[character];
 
@@ -34,5 +35,9 @@ PrefixTree.prototype.contains = function(word) {
   }
 
   return false;
+
+};
+
+PrefixTree.prototype.search = function(prefix) {
 
 };
