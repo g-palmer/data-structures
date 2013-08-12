@@ -6,12 +6,11 @@ var BinarySearchTree = function(){
 
 };
 
-BinarySearchTree.prototype.insert = function(value, options) {
+BinarySearchTree.prototype.insert = function(value) {
 
-  var batchInsert = options && options.batch;
   var newNode, minAndMax;
 
-  if (!batchInsert) {
+  if (typeof value === 'number') {
     value = [value];
   }
 
