@@ -6,7 +6,7 @@ describe("PrefixTree", function() {
   });
 
   it("should have methods named 'insert'", function() {
-    expect(binarySearchTree.insert).toEqual(jasmine.any(Function));
+    expect(prefixTree.insert).toEqual(jasmine.any(Function));
   });
 
   describe('insert', function() {
