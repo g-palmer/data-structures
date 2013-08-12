@@ -1,7 +1,7 @@
 var PrefixTree = function(letter) {
 
   this.letter = letter || '';
-  this.children = [];
+  this.children = {};
   this.fullWord = false;
 
 };
@@ -9,27 +9,15 @@ var PrefixTree = function(letter) {
 PrefixTree.prototype.insert = function(word) {
 
   var character = word[0];
-  var charInChildren;
-  var childNode;
-
-  if (word) {
-
-    this.children.forEach(function(node) {
-      if (node.letter === character) {
-        charInChildren = true;
-        childNode = node;
-      }
-    });
-
-    if (!charInChildren) {
-      childNode = new PrefixTree(character);
-      this.children.push(childNode);
-    }
-
-  }
+  var charInChildren = this.children[character];
+  var childNode = charInChildren ? charInChildren : new PrefixTree(character);
 
   if (word.length > 1) { childNode.insert(word.slice(1)); }
   else { childNode.fullWord = true; }
+
+  if (!charInChildren) {
+    this.children[character] = childNode;
+  }
 
 };
 
