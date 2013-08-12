@@ -42,7 +42,7 @@ describe("T9PrefixTree", function() {
       expect(t9Search3777).toContain('drum');
     });
 
-    it('should all for pauses for sequences of characters with the same t9 number', function() {
+    it('should allow for pauses for sequences of characters with the same t9 number', function() {
       t9PrefixTree.insert('ball');
       t9PrefixTree.insert('bat');
       t9PrefixTree.insert('back');

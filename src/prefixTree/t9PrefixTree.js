@@ -27,11 +27,13 @@ T9PrefixTree.prototype.t9Search = function(number) {
   var counter = 0;
 
   numbers.forEach(function(num, index) {
-    if (num === numbers[index + 1]) {
-      counter++;
-    } else {
-      string += this.t9Characters[num][counter];
-      counter = 0;
+    if (num !== '-') {
+      if (num === numbers[index + 1]) {
+        counter++;
+      } else {
+        string += this.t9Characters[num][counter];
+        counter = 0;
+      }
     }
   }, this);
 
